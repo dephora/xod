@@ -19,4 +19,19 @@ export default {
   UPLOADED_SUCCESSFULLY: () => ({
     title: 'Uploaded successfully',
   }),
+  UPDATE_INDEXES_ERROR_BROKEN_FILE: ({ workspacePath, error }) => ({
+    title: 'Some of updated package index files are broken',
+    note: `Error: ${error}`,
+    solution: `Check correctness of the URL in the "${workspacePath}/__packages__/extra.txt" and try again`,
+  }),
+  UPDATE_INDEXES_ERROR_NO_CONNECTION: ({ workspacePath, error }) => ({
+    title: 'Can not update indexes',
+    note: error,
+    solution: `Check your internet connection and correctness of the URLs in the "${workspacePath}/__packages__/extra.txt" and try again`,
+  }),
+  CANT_INSTALL_ARDUINO_PACKAGE: ({ workspacePath, packageNames }) => ({
+    title: 'Can not install arduino packages',
+    note: `Tried to install "${packageNames}", but arduino-cli exited with an error`,
+    solution: `Check that "${workspacePath}/__packages__/extra.txt" contains an url to the index file of core, that you want to install and try again`,
+  }),
 };
