@@ -10,6 +10,7 @@ import {
   configure,
   addPackageIndexUrl,
   addPackageIndexUrls,
+  removePackageIndexUrls,
 } from './config';
 import { patchBoardsWithOptions } from './optionParser';
 import listAvailableBoards from './listAvailableBoards';
@@ -134,6 +135,7 @@ const ArduinoCli = (pathToBin, config = null) => {
       ),
     addPackageIndexUrl: url => addPackageIndexUrl(configPath, url),
     addPackageIndexUrls: urls => addPackageIndexUrls(configPath, urls),
+    removePackageIndexUrls: urls => removePackageIndexUrls(configPath, urls),
   };
 };
 

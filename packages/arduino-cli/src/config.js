@@ -4,10 +4,20 @@ import { resolve } from 'path';
 import * as fse from 'fs-extra';
 import YAML from 'yamljs';
 
+const ADDITIONAL_URLS_PATH = ['board_manager', 'additional_urls'];
+
 const getDefaultConfig = configDir => ({
   sketchbook_path: resolve(configDir, 'sketchbook'),
   arduino_data: resolve(configDir, 'data'),
 });
+
+const getAdditionalUrls = R.pathOr([], ADDITIONAL_URLS_PATH);
+
+const overAdditionalUrls = R.over(
+  R.lens(getAdditionalUrls, R.assocPath(ADDITIONAL_URLS_PATH))
+);
+
+const stringifyConfig = cfg => YAML.stringify(cfg, 10, 2);
 
 // :: Path -> Object -> { config: Object, path: Path }
 export const saveConfig = (configPath, config) => {
@@ -40,20 +50,30 @@ export const addPackageIndexUrls = (configPath, urls) =>
     .readFile(configPath, { encoding: 'utf8' })
     .then(YAML.parse)
     .then(
-      R.over(
-        R.lensPath(['board_manager', 'additional_urls']),
-        R.pipe(
-          R.defaultTo([]),
-          R.concat(R.__, urls),
-          R.reject(R.isEmpty),
-          R.uniq
-        )
+      overAdditionalUrls(
+        R.pipe(R.concat(R.__, urls), R.reject(R.isEmpty), R.uniq)
       )
     )
-    .then(cfg => YAML.stringify(cfg, 10, 2))
+    .then(stringifyConfig)
     .then(data => fse.writeFile(configPath, data))
     .then(R.always(urls));
 
 // :: Path -> URL -> Promise URL Error
 export const addPackageIndexUrl = (configPath, url) =>
   addPackageIndexUrls(configPath, [url]).then(R.always(url));
+
+// :: Path -> [URL] -> Promise [URL] Error
+export const removePackageIndexUrls = (configPath, urls) => {
+  let removedUrls = [];
+
+  return fse
+    .readFile(configPath, { encoding: 'utf8' })
+    .then(YAML.parse)
+    .then(cfg => {
+      removedUrls = R.compose(R.intersection(urls), getAdditionalUrls)(cfg);
+      return overAdditionalUrls(R.difference(R.__, removedUrls))(cfg);
+    })
+    .then(stringifyConfig)
+    .then(data => fse.writeFile(configPath, data))
+    .then(R.always(removedUrls));
+};

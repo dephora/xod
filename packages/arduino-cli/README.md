@@ -91,6 +91,14 @@ Accepts:
 
 - Returns `Promise<Array<String>>` with just added URLs
 
+### removePackageIndexUrls(urls)
+Removes specified additional package index urls from the config file.
+
+Accepts:
+- `urls` `<Array<String>>` — List of URLs of the third-party `package_*_index.json` files
+
+- Returns `Promise<Array<String>>` with just removed URLs
+
 ### core.download(progressCallback, packageName)
 Wraps `arduino-cli core download packageName`.
 Downloads core and tool archives for the specified package.
