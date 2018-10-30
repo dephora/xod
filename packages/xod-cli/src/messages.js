@@ -12,6 +12,10 @@ export const entrypointArgumentDescription =
 
 export const openNotAXodFile = path => `Tried to open not a xod file: ${path}`;
 
+export const patchNotFound = 'Patch not found';
+
+export const patchNotValidPath = path => `Not a valid patch path: ${path}`;
+
 export const quietFlagDescription = 'do not log messages other than errors';
 
 export const resaveCommandDescription =
@@ -38,6 +42,34 @@ export const resaveCommandOutputFlagDescription =
   'xodball or multifile directory output path, defaults to stdout';
 
 export const resaveSuccess = p => `Project resaved into ${p}`;
+
+export const tabtestCommandDescription = 'tabtest project';
+
+export const tabtestCommandUsage = 'tabtest [options] [project]';
+
+export const tabtestCommandGeneratingCpp = 'Generating C++ code';
+
+export const tabtestCommandExamples = [
+  `Build tabtests for project in current working directory\n` +
+    `$ xodc tabtest`,
+  `Specify target directory and project, only generate tests\n` +
+    `$ xodc tabtest --no-build --output-dir=/tmp/xod-tabtest ./workspace/__lib__/xod/net`,
+];
+
+export const tabtestCommandExitedWithCode = (cmd, code) =>
+  `${cmd} exited with code ${code}`;
+
+export const tabtestCommandNobuildFlagDescription = 'do not build';
+
+export const tabletestCommandLoadingProject = 'Loading project';
+
+export const tabtestCommandOutputFlagDescription =
+  'path to directory where to save tabtest data';
+
+export const tabtestCommandSavingFiles = 'Saving files';
+
+export const tabletestCommandPreparing = dir =>
+  `Preparing test directory: ${dir}`;
 
 export const workspaceFlagDescription =
   'use the workspace specified, defaults to $HOME/xod';
