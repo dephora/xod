@@ -16,9 +16,62 @@ export const entrypointArgumentDescription =
 
 export const openNotAXodFile = path => `Tried to open not a xod file: ${path}`;
 
+export const onBehalfFlagDescription = 'publish on behalf of the username';
+
+export const passwordFlagDescription = 'XOD API password';
+
 export const patchNotFound = 'Patch not found';
 
 export const patchNotValidPath = path => `Not a valid patch path: ${path}`;
+
+export const publishCommandAccessDenied = (username, libPath) =>
+  `user "${username}" can't access ${libPath}`;
+
+export const publishCommandAccessTokenNotFound =
+  'Access Token not found in reply';
+
+export const publishCommandAuthentication = 'Authenticate';
+
+export const publishCommandAuthError = msg =>
+  `Can't authenticate because of ${msg}`;
+
+export const publishCommandCreateLibrary = 'Create library';
+
+export const publishCommandDescription = 'publish a library';
+
+export const publishCommandExamples = [
+  'Publish the current project with the version defined in `project.xod`\n' +
+    '$ xodc publish',
+  'Publish a project saved as xodball\n$ xodc publish foo.xodball',
+];
+
+export const publishCommandGetLib = 'Get library';
+
+export const publishCommandGetUser = 'Get user';
+
+export const publishCommandLibGetError = (libname, msg) =>
+  `Can't get library ${libname} because of ${msg}`;
+
+export const publishCommandLibLoading = 'Load library';
+
+export const publishCommandLibPost = 'Publish library';
+
+export const publishCommandLibPostError = msg =>
+  `Can't publish library because of ${msg}`;
+
+export const publishCommandLibPutError = msg =>
+  `Can't create library because of ${msg}`;
+
+export const publishCommandUsage = 'publish [options] [entrypoint]';
+
+export const publishCommandUser404 = username =>
+  `User ${username} doesn't exist`;
+
+export const publishCommandUserError = msg =>
+  `Can't get user because of ${msg}`;
+
+export const publishCommandVersionExists = libpath =>
+  `Version ${libpath} already exists`;
 
 export const quietFlagDescription = 'do not log messages other than errors';
 
@@ -102,6 +155,8 @@ export const transpileCommandUsage = 'transpile [options] [entrypoint]';
 export const transpileCommandTransforming = 'Transforming';
 
 export const transpileCommandTranspiling = 'Transpiling';
+
+export const usernameFlagDescription = 'XOD API username';
 
 export const workspaceFlagDescription =
   'use the workspace specified, defaults to $HOME/xod';
