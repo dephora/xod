@@ -1,3 +1,7 @@
+export const apiFlagDescription = 'XOD API hostname (default: xod.io)';
+
+export const debugFlagDescription = 'enable debug traces';
+
 export const entrypointArgumentDescription =
   `multipositional argument, reference to project and patch:\n` +
   `if omitted:\n` +
@@ -70,6 +74,34 @@ export const tabtestCommandSavingFiles = 'Saving files';
 
 export const tabletestCommandPreparing = dir =>
   `Preparing test directory: ${dir}`;
+
+export const transpileCommandDescription =
+  'transpile (generate C++) a XOD program';
+
+export const transpileCommandDone = 'Done!';
+
+export const transpileCommnandExamples = [
+  'Transpile a program using the cwd patch as entry point, print to stdout\n' +
+    '$ xodc transpile',
+  'Transpile the current project with `main` patch as entry point, save the output in `x.cpp`\n' +
+    '$ xodc transpile main -o x.cpp',
+  'Transpile a project in the xodball with `main` patch as entry point\n' +
+    '$ xodc transpile foo.xodball main',
+];
+
+export const transpileCommandOutputFlagDescription =
+  'C++ output file path, default to stdout';
+
+export const transpileCommandProjectLoading = projectPath =>
+  `Loading project ${projectPath}`;
+
+export const transpileCommandSavingTo = outPath => `Saving to ${outPath}`;
+
+export const transpileCommandUsage = 'transpile [options] [entrypoint]';
+
+export const transpileCommandTransforming = 'Transforming';
+
+export const transpileCommandTranspiling = 'Transpiling';
 
 export const workspaceFlagDescription =
   'use the workspace specified, defaults to $HOME/xod';

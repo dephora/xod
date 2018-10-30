@@ -11,6 +11,12 @@ export const version = flags.version({
   char: 'v',
 });
 
+export const debug = flags.boolean({
+  description: msg.debugFlagDescription,
+  env: 'XOD_DEBUG',
+  default: false,
+});
+
 export const quiet = flags.boolean({
   char: 'q',
   description: msg.quietFlagDescription,
