@@ -1,2 +1,2 @@
-bin/
-__lib__/
+/lib
+/bundle
